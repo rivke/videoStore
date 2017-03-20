@@ -3,7 +3,7 @@
  */
 public class Rental {
 
-	private Movie _movie;
+	Movie _movie;
 	private int _daysRented;
 
 	public Rental(Movie movie, int daysRented) {
@@ -18,26 +18,10 @@ public class Rental {
 	public Movie getMovie() {
 		return _movie;
 	}
-
-	public double getAmount() {
+   public double getAmount() {
 		
-		double result=0; 
-		switch (getMovie().getPriceCode()) {
-		case Movie.REGULAR:
-			result += 2;
-			if (getDaysRented() > 2)
-				result += (getDaysRented() - 2) * 1.5;
-			break;
-		case Movie.NEW_RELEASE:
-			result += getDaysRented() * 3;
-			break;
-		case Movie.CHILDRENS:
-			result += 1.5;
-			if (getDaysRented() > 3)
-				result += (getDaysRented() - 3) * 1.5;
-			break;
-		}
-		return result;
+		return _movie.getAmount(getDaysRented());
+		
 	}
 
 	public int getFrequentRenterPoints() {
